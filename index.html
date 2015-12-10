@@ -1,0 +1,905 @@
+<!doctype html>
+
+<!--
+
+    Welcome to the light side of the source, young padawan.
+
+    One step closer to learn something interesting you are...
+
+                               ____                  
+                            _.' :  `._               
+                        .-.'`.  ;   .'`.-.           
+               __      / : ___\ ;  /___ ; \      __  
+             ,'_ ""=-.:__;".-.";: :".-.":__;.-="" _`,
+             :' `.t""=-.. '<@.`;_  ',@:` ..-=""j.' `;
+                  `:-.._J '-.-'L__ `-.-' L_..-;'     
+                    "-.__ ;  .-"  "-.  : __.-"       
+                        L ' /.======.\ ' J           
+                         "-.   "__"   .-"            
+                        __.l"-:_JL_;-";.__           
+                     .-j/'.;  ;""""  / .'\"-.        
+                   .' /:`. "-.:     .-" .';  `.      
+                .-"  / ;  "-. "-..-" .-"  :    "-.   
+             .+"-.  : :      "-.__.-"      ;-._   \  
+             ; \  `.; ;                    : : "+. ; 
+             :  ;   ; ;                    : ;  : \: 
+             ;  :   ; :                    ;:   ;  : 
+            : \  ;  :  ;                  : ;  /  :: 
+            ;  ; :   ; :                  ;   :   ;: 
+            :  :  ;  :  ;                : :  ;  : ; 
+            ;\    :   ; :                ; ;     ; ; 
+            : `."-;   :  ;              :  ;    /  ; 
+             ;    -:   ; :              ;  : .-"   : 
+             :\     \  :  ;            : \.-"      : 
+              ;`.    \  ; :            ;.'_..-=  / ; 
+              :  "-.  "-:  ;          :/."      .'  :
+               \         \ :          ;/  __        :
+                \       .-`.\        /t-""  ":-+.   :
+                 `.  .-"    `l    __/ /`. :  ; ; \  ;
+                   \   .-" .-"-.-"  .' .'j \  /   ;/ 
+                    \ / .-"   /.     .'.' ;_:'    ;  
+                     :-""-.`./-.'     /    `.___.'   
+                           \ `t  ._  /               
+                            "-.t-._:'                
+
+-->
+
+<!--
+    
+    So you'd like to know how to use impress.js?
+    
+    You've made the first, very important step - you're reading the source code.
+    And that's how impress.js presentations are built - with HTML and CSS code.
+    
+    Believe me, you need quite decent HTML and CSS skills to be able to use impress.js effectively.
+    And what is even more important, you need to be a designer, too, because there are no default
+    styles for impress.js presentations, there is no default or automatic layout for them.
+    
+    You need to design and build it by hand.
+    
+    So...
+    
+    Would you still like to know how to use impress.js?
+    
+-->
+
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=1024"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by
+        Bartek Szopka @bartaz</title>
+
+    <meta name="description"
+          content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com."/>
+    <meta name="author" content="Bartek Szopka"/>
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic"
+          rel="stylesheet"/>
+
+    <!--
+        
+        Impress.js doesn't depend on any external stylesheet. Script adds all styles it needs for
+        presentation to work.
+        
+        This style below contains styles only for demo presentation. Browse it to see how impress.js
+        classes are used to style presentation steps, or how to apply fallback styles, but I don't want
+        you to use them directly in your presentation.
+        
+        Be creative, build your own. We don't really want all impress.js presentations to look the same,
+        do we?
+        
+        When creating your own presentation get rid of this file. Start from scratch, it's fun!
+        
+    -->
+    <link href="css/impress.css" rel="stylesheet"/>
+    <link href="css/impress-progress.css" rel="stylesheet"/>
+    <link href="css/animate.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="favicon.png"/>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<!--
+    
+    Body element is used by impress.js to set some useful class names, that will allow you to detect
+    the support and state of the presentation in CSS or other scripts.
+    
+    First very useful class name is `impress-not-supported`. This class means, that browser doesn't
+    support features required by impress.js, so you should apply some fallback styles in your CSS.
+    It's not necessary to add it manually on this element. If the script detects that browser is not
+    good enough it will add this class, but keeping it in HTML means that users without JavaScript
+    will also get fallback styles.
+    
+    When impress.js script detects that browser supports all required features, this class name will
+    be removed.
+    
+    The class name on body element also depends on currently active presentation step. More details about
+    it can be found later, when `hint` element is being described.
+    
+-->
+<body class="impress-not-supported">
+
+<!--
+    For example this fallback message is only visible when there is `impress-not-supported` class on body.
+-->
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified
+        version of this presentation.</p>
+
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+
+<div id="page">
+    <div id="container">
+        <div id="p01">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p02">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p03">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p04">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p05">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p06">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p07">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p08">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p09">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p10">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p11">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p12">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p13">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p14">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p15">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+        <div id="p16">
+            <b class="s001"></b><b class="s002"></b><b class="s003"></b><b class="s004"></b><b class="s005"></b><b
+                class="s006"></b>
+            <b class="s007"></b><b class="s008"></b><b class="s009"></b><b class="s010"></b><b class="s011"></b><b
+                class="s012"></b>
+            <b class="s013"></b><b class="s014"></b><b class="s015"></b><b class="s016"></b><b class="s017"></b><b
+                class="s018"></b>
+            <b class="s019"></b><b class="s020"></b><b class="s021"></b><b class="s022"></b><b class="s023"></b><b
+                class="s024"></b>
+            <b class="s025"></b><b class="s026"></b><b class="s027"></b><b class="s028"></b><b class="s029"></b><b
+                class="s030"></b>
+        </div>
+    </div>
+</div>
+<!--
+    
+    Now that's the core element used by impress.js.
+    
+    That's the wrapper for your presentation steps. In this element all the impress.js magic happens.
+    It doesn't have to be a `<div>`. Only `id` is important here as that's how the script find it.
+    
+    You probably won't need it now, but there are some configuration options that can be set on this element.
+    
+    To change the duration of the transition between slides use `data-transition-duration="2000"` giving it
+    a number of ms. It defaults to 1000 (1s).
+    
+    You can also control the perspective with `data-perspective="500"` giving it a number of pixels.
+    It defaults to 1000. You can set it to 0 if you don't want any 3D effects.
+    If you are willing to change this value make sure you understand how CSS perspective works:
+    https://developer.mozilla.org/en/CSS/perspective
+    
+    But as I said, you won't need it for now, so don't worry - there are some simple but interesing things
+    right around the corner of this tag ;)
+    
+-->
+<!-- To add progressbar and progress -->
+<div class="progressbar">
+    <div></div>
+</div>
+<div class="progress"></div>
+
+<div id="impress">
+
+    <!--
+        
+        Here is where interesting thing start to happen.
+        
+        Each step of the presentation should be an element inside the `#impress` with a class name
+        of `step`. These step elements are positioned, rotated and scaled by impress.js, and
+        the 'camera' shows them on each step of the presentation.
+        
+        Positioning information is passed through data attributes.
+        
+        In the example below we only specify x and y position of the step element with `data-x="-1000"`
+        and `data-y="-1500` attributes. This means that **the center** of the element (yes, the center)
+        will be positioned in point x = -1000px and y = -1500px of the presentation 'canvas'.
+        
+        It will not be rotated or scaled.
+        
+    -->
+
+
+    <div id="init" class="step" data-x="-4000" data-y="-1500">
+        <h1>Comunicaciones seguras para la protección de las personas en situaciones de emergencia</h1>
+
+        <div id="centrarimagen">
+            <img id="img1" src="img/cryptull.jpg" alt="ull" height="300" width="300">
+            <img id="img2" src="img/ull.png" alt="ull" height="150" width="300">
+            <img id="img3" src="img/instituto.png" alt="ull" height="150" width="290">
+
+            <h2><span>José Iván Santos González</span></h2>
+        </div>
+
+    </div>
+
+
+    <div id="doctorando" class="step" data-x="-4000" data-y="-1500" data-z="-100000">
+        <h1>Doctorado en Ingeniería Industrial, Informática y Medioambiental</h1>
+
+        <div id="directora">
+            <img src="img/pino.jpg" alt="ull" height="200" width="250">
+
+            <h2><span>Pino Caballero Gil</span></h2>
+        </div>
+
+        <div id="tesis">
+            <h2><span>Aplicaciones Tecnológicas para Proteger la Seguridad Física de las Personas</span></h2>
+        </div>
+
+        <div class="notes">
+            <p>Soy estudiante recien matriculado al Doctorado en Ingeniería Industrial, Informática y Medioambiental </p>
+
+            <p>y mi tesis se titula Aplicaciones Tecnológicas para Proteger la Seguridad Física de las Personas</p>
+
+            <p>y está dirigida por la profesara Pino Caballero Gil</p>
+
+        </div>
+    </div>
+
+
+    <div id="pilares" class="step" data-x="-2000" data-y="-1500">
+        <h1>Pilares fundamentales del doctorado</h1>
+
+        <ul>
+            <li class="substep">Aplicaciones Tecnológicas</li>
+            <li class="substep">Protección la Seguridad Física de las Personas</li>
+            <li class="substep">Seguridad de la información</li>
+        </ul>
+        <div class="notes">
+            <p>Los pilares fundamentales en los qué basamos la temáticca del doctorado son 3</p>
+
+            <p>Los dos primeros aparecen en el título del mismo y son desarrollo de aplicaciones tecnológicas y la proteccion física de las personas</p>
+
+            <p>El tercer pilar fundamental deriva del grupo de investigación al que pertenezco y no es otro que la seguridad de la información, algo de vital importancia hoy en día</p>
+
+        </div>
+    </div>
+
+
+    <div id="tema" class="step subitems" data-x="-1000" data-y="-1500">
+        <h1>¿ Por qué nos decidimos por este tema ?</h1>
+        <ul>
+            <li class="substep">Trabajo útil para la sociedad</li>
+            <li class="substep">Necesidad que cubrir</li>
+            <li class="substep">Nuevas tecnologías</li>
+        </ul>
+
+        <div class="notes">
+            <p>En primer lugar queríamos que el tranajo que vamos a realizar no se quede sólo ahí sino intentar que pueda ser útil en la vida real</p>
+
+            <p>Además vimos una importante necesidad de cubrir, como es la protección de la seguridad física de las personas en diferentes entornos y en sectores de la población que son especialmente vulnerables</p>
+
+            <p>y finalmente observamos que el creciente uso de las nuevas tecnologías puede favorecer a la posible adopción por parte de los usuarios de cualquier sistema que se desarrolle</p>
+
+        </div>
+
+    </div>
+
+    <!--
+        
+        The `id` attribute of the step element is used to identify it in the URL, but it's optional.
+        If it is not defined, it will get a default value of `step-N` where N is a number of slide.
+        
+        So in the example below it'll be `step-2`.
+        
+        The hash part of the url when this step is active will be `#/step-2`.
+        
+        You can also use `#step-2` in a link, to point directly to this particular step.
+        
+        Please note, that while `#/step-2` (with slash) would also work in a link it's not recommended.
+        Using classic `id`-based links like `#step-2` makes these links usable also in fallback mode.
+        
+    -->
+    <div id="ahora" class="step" data-x="-10000" data-y="-1500" data-rotate-x="3" data-rotate-y="-45">
+        <h1>¿ Qué hemos hecho hasta ahora ?</h1>
+        <img id="wdl" src="img/WDL.png" alt="ull" height="300" width="350">
+        <h2> Sistema alternativo de comunicación inalámbrica para situaciones de emergencia</h2>
+        <div class="notes">
+            <p>Ya que voy a comenzar mi doctorado ahora, aún no se ha podido entrar en el tema en detalle pero sí que tenemos algo de experiencia previa con el desarrollo de un sistema alternativo de comunicación inalámbrica para situaciones de emergencia que es lo que voy a contarles a continuación con un poco más de detalle</p>
+
+
+        </div>
+    </div>
+
+    <div id='intro' class="step slide" data-x="4000" data-y="-1500" data-z="-8000" data-scale="1">
+        <h1> Introducción </h1>
+        <ul>
+            <li> Telefonía móvil </li>
+            <li> Nueva tecnología inalámbrica (Wi-Fi Direct) </li>
+            <li> Conexiones P2P (Peer To Peer) </li>
+            <li> Seguridad </li>
+        </ul>
+        <img id = "intro_img" src="img/intro.png"  width="300" height="250"  />
+
+        <div class="notes">
+            <p>Uno de los hechos que nos ha llevado al desarrollo de este sistema es que el uso de la telefonía móvil ha crecido cada vez más en los últimos años</p>
+
+            <p>Junto a ella , son cada vez más los dispositivos que incorporán la tecnología Wi-Fi Direct, la cual nos permite realizar comunicaciones P2P entre dispositivos</p>
+
+            <p>Otro hecho importante es que al extenderse tanto el uso de estos dispositivos, en ellos guardamos información relevante y es por ello que la seguridad de la información tiene un papel tan importante en las comunicaciones</p>
+
+        </div>
+    </div>
+
+    <div id="objetivos" class="step slide" data-x="4350" data-y="-1500" data-z="-8350" data-rotate-y="90">
+        <h1> Objetivos </h1>
+        <ul>
+            <li> Estudiar la tecnología Wi-Fi Direct </li>
+            <li> Solución para situaciones de emergencia </li>
+            <li> Aplicación basada en Android </li>
+            <li> Algoritmos seguros </li>
+        </ul>
+        <img id ="android" src="img/android.png"  width="150" height="75"  />
+        <img id ="terremoto" src="img/terremoto.png"  width="500" height="350"  />
+
+        <div class="notes">
+            <p>Los objetivos principales de este trabajo fueron, en primer lugar el estudio de la tecnología Wi-Fi Direct para así poder desarrollar una solución para comunicaciones en situaciones de emergencia basada en una aplicación Android y en la que las comunicaciones utilicen algoritmos y protocolos seguros.</p>
+
+        </div>
+
+    </div>
+
+    <div id="wifiDir" class="step slide" data-x="4000" data-y="-1500" data-z="-8700" data-rotate-y="180">
+        <h1> Wi-Fi Direct </h1>
+        <p> Wi-Fi Direct es una nueva tecnología desarrollada por la Wi-Fi Alliance cuyo cometido es establecer una verdadera conexión P2P entre usuarios haciendo uso de la tecnología Wi-Fi.<p>
+        <h2> P2P en Wi-Fi tradicional </h2>
+        <ul>
+            <li> IBSS (Independent Basic Service Set) </li>
+            <li> TDLS (Tunneled Direct Link Setup) </li>
+        </ul>
+        <img id ="ibss" src="img/ibss.png"  width="200" height="200"  />
+        <img id ="tdls" src="img/tdls.png"  width="200" height="200"  />
+
+        <div class="notes">
+            <p>Wi-Fi Direct es una nueva tecnología desarrollada por la Wi-Fi Alliance cuyo cometido es establecer una verdadera conexión P2P entre usuarios haciendo uso de la tecnología Wi-Fi.</p>
+
+            <p>Cuando digo una verdadera conexión P"P lo digo así porque tradicionalmente han habido otros sistemas. este es el caso de IBSS el cual simula la conexión p2p estableciendo una conexión en cadena de los dispositivos de manera que si queremos enviar un paquete entre dos nodos, la información pasará por los nodos itermedios que se serám los encargados de retransmitir la información</p>
+
+            <p> Por otro lado está también el sistema TDLS el cual simula la conexión P2P a través de un access point el cual es el encargado de retransmitir la información a su destinatario</p>
+
+        </div>
+
+    </div>
+
+    <div id="tecnologias" class="step slide" data-x="3650" data-y="-1500" data-z="-8350" data-rotate-y="270">
+        <h1>Comparación con otras tecnologías</h1>
+        <h2> Bluetooth 4.0 </h2>
+            <table>
+                <tbody><tr><th>Tecnología</th><th>Wi-Fi Direct</th><th>Bluetooth 4.0 </th></tr>
+                <tr><td class="tecno">Ancho de banda</td><td>250 Mbps</td><td>25 Mbps</td></tr>
+                <tr class="even"><td class="tecno">Radio de alcance</td><td>100 metros</td><td>60 metros</td></tr>
+                <tr><td class="tecno">Retrocompatibilidad</td><td>Sí</td><td>No</td></tr>
+                <tr class="even"><td class="tecno">Frecuencia</td><td>2.4 GHz</td><td>2.4 GHz</td></tr>
+                <tr><td class="tecno">Consumo de energía</td><td>25% menor que Wi-Fi
+                    tradicional</td><td>Nuevo modo de bajo consumo de energía</td></tr>
+                <tr class="even"><td class="tecno">Seguridad</td><td>WPA2</td><td>AES 128 bits con CCM</td></tr>
+                </tbody></table>
+
+        <div class="notes">
+            <p>La principal tecnología inalámbrica con la que podemos comparar Wi-Fi Direct es Bluetooth 4.</p>
+
+            <p>Como podemos observar Wi-fi Direct es superior en la mayoría de características a Bluetooth</p>
+
+            <p></p>
+
+        </div>
+
+    </div>
+
+
+    <div id = "wifi" class="step slide" data-x="4000" data-y="-1850" data-z="-8350" data-rotate-x="90" data-rotate-y="360" data-rotate-z="90">
+        <h1>Wi-Fi Direct en Android</h1>
+        <ul>
+            <li> Versión 4.0 o superior </li>
+            <li> Poca seguridad </li>
+            <li> Imposibilidad de automatizar la conexión de dispositivos </li>
+            <li> Aplicaciones para intercambio de archivos </li>
+
+        </ul>
+
+        <div class="notes">
+            <p>En Android, que es el sistema que hemos elegido para desarrollar nuestra propuesta, Wi-Direc está disponible a partir de la versión 4.0</p>
+
+            <p>Un problema con el que nos hemos encontrado durante el desarrollo de la aplicación es la imposibilidad de automatizar las conexiones, así como con diversos agujeros de seguridad</p>
+
+            <p>Por otro lado la mayoría de aplicaciones que nos encontramos que hacen uso de esta tecnología son aplicaciones de compartición de archivos</p>
+
+        </div>
+        <img id ="logo" src="img/logo2.png"  width="275" height="200"  />
+
+
+    </div>
+
+
+
+
+
+
+    <div id="seguridad" class="step slide" data-x="4350" data-y="-2200" data-z="-8350" data-rotate-y="270">
+        <h1>Seguridad en Wi-Fi Direct</h1>
+        <p> La seguridad de Wi-Fi Direct está actualmente basada en WPA2. </p>
+        <p class = "AES">WPA2 utiliza como algoritmo de cifrado AES y no permite el uso de del algoritmo TKIP debido a importantes agujeros de seguridad encontrados en este algoritmo. </p>
+
+        <p class = "WPS">Wi-Fi Direct hace uso de Wi-Fi Protected Setup, un estándar definido para la creación de redes Wi-Fi seguras,
+            incluyendo diversos mecanismos para facilitar la configuración de una red Wi-Fi segura usando WPA2 con la mínima intervención del usuario.</p>
+
+        <div class="notes">
+            <p>La seguridad de Wi-Fi Direct está actualmente basada en WPA2.</p>
+
+            <p>WPA2 utiliza como algoritmo de cifrado AES y no permite el uso de del algoritmo TKIP debido a importantes agujeros de seguridad encontrados en este algoritmo</p>
+
+            <p>Wi-Fi Direct hace uso de Wi-Fi Protected Setup, un estándar definido para la creación de redes Wi-Fi seguras,
+                incluyendo diversos mecanismos para facilitar la configuración de una red Wi-Fi segura usando WPA2 con la mínima intervención del usuario.</p>
+
+        </div>
+
+
+    </div>
+
+
+<!--
+    <div class="step slide" data-x="4000" data-y="-1150" data-z="-8350" data-rotate-x="90" data-rotate-y="180" data-rotate-z="90">
+        <q>Would you like to <strong>impress your audience</strong> with <strong>stunning visualization</strong> of your
+            talk?</q>
+    </div>
+
+-->
+
+    <div id="atack" class="step slide" data-x="4700" data-y="-2200" data-z="-8700" data-rotate-y="180">
+        <h1>Ataques a Wi-Fi Direct</h1>
+        <h2 id="DoS">Denegation of Service (DoS)</h2>
+        <h2 id ="PSK">Ataques a la clave precompartida (PSK)</h2>
+        <h2 id ="MITM">Ataques Man In The Middle (MITM)</h2>
+        <img id ="hacker" src="img/hacker.png"  width="400" height="250"  />
+
+        <div class="notes">
+            <p>Wi-Fi Direct es susceptible de ataques de denegación de servicio mediante inundación de un nodo con paqutes de autenticación, ataques a la clave precompartidad y ataques man in the middle en los que un usuario malintencionado puede centralizar todas las comunicaciones</p>
+
+            <p></p>
+
+            <p></p>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="diffie" class="step slide" data-x="5050" data-y="-2200" data-z="-8350" data-rotate-y="90">
+        <h1>Elliptic Curve Diffie-Hellman (ECDH)</h1>
+        <p>El protocolo ECDH es una variación del protocolo de Diffie-Hellman original para poder hacer uso de las propiedades que nos ofrecen las curvas elípticas definidas sobre cuerpos
+            finitos.</p>
+
+        <img id ="ecdh" src="img/ECDH.png"  width="450" height="400"  />
+
+        <div class="notes">
+            <p>Para mejorar la seguridad del sistema hemos decidido utilizar una combinación de ECDH y SNOW 3G para generar la clave compartida y cifrar las comunicaciones respectivamente. </p>
+
+            <p>El protocolo ECDH es una variación del protocolo de Diffie-Hellman original para poder hacer uso de las propiedades que nos ofrecen las curvas elípticas definidas sobre cuerpos
+                finitos</p>
+
+            <p></p>
+
+        </div>
+    </div>
+
+    <div id="snow" class="step slide" data-x="4700" data-y="-2200" data-z="-8000" data-scale="1">
+        <h1> SNOW 3G </h1>
+        <ul>
+            <li> 4G/LTE </li>
+            <li> UMTS Encryption Algorithm 2 (UEA2) </li>
+            <li> UMTS Integrity Algorithm 2 (UIA2)  </li>
+            <li> Tamaño de clave de 128 bits </li>
+            <li> 32 bits de secuencia cifrante </li>
+        </ul>
+        <img id = "lte" src="img/lte.png"  width="150" height="100"  />
+        <img id = "ss" src="img/3gpp.png"  width="150" height="100"  />
+
+        <div class="notes">
+            <p>El algoritmo SNOW 3G es el algoritmo de cifrado en flujo utilizado en las comunicaciones 4G/LTE. Este algoritmo utiliza los algoritmos UMTS Encryption Alghorithim 2 (UEA2) y UMTS integrity algorithm 2 (UIA2)</p>
+
+            <p>Además utiliza un tamaño de clave de 128 bits para generar una secuencia cifrante de 32 bits </p>
+
+            <p></p>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <div id="estrSnow" class="step slide" data-x="4700" data-y="-2550" data-z="-8350" data-rotate-x="90" data-rotate-y="0" data-rotate-z="90">
+        <h1> Estructura general SNOW 3G </h1>
+        <img id = "snow3g" src="img/SNOW3g.png"  width="680" height="500"  />
+        <div class="notes">
+            <p>Aquí podemos ver la estructura general del algoritmo SNOW 3G donde puede observarse como se utiliza un linear feedback shift register y una máquina de estados finitos</p>
+
+            <p></p>
+
+            <p></p>
+
+        </div>
+    </div>
+
+
+ <!--   <div class="step slide" data-x="4700" data-y="-1850" data-z="-8350" data-rotate-x="90" data-rotate-y="180" data-rotate-z="90">
+        <q>Would you like to <strong>impress your audience</strong> with <strong>stunning visualization</strong> of your
+            talk?</q>
+    </div>
+-->
+
+
+
+
+
+
+    <div class="step slide" id="app1" data-x="5050" data-y="-2900" data-z="-8350" data-rotate-y="-90">
+        <h1> Aplicación Wi-Fi Direct Locator </h1>
+        <img id ="wdl2" src="img/WDL.png"  width="300" height="250"  />
+        <div id="wdleft">
+            <p id="emergencias"> <b class="rotating"> Emergencias </b> </p>
+            <p id="android1"> <b class="scaling"> Android </b> </p>
+            <p id="ahorro"> <b class="rotating1"> Ahorro de energía </b> </p>
+        </div>
+        <div id="wdlright">
+            <p id="desastres"> <b class="rotating1">Desastres naturales</b> </p>
+            <p id="wifidirect"> <b class="scaling"> Wi-Fi Direct </b> </p>
+            <p id="algoritmos"> <b class="rotating"> Algoritmos seguros </b> </p>
+        </div>
+
+        <div class="notes">
+            <p>Ahora que ya conocemos como ha sio contruido y en que hemos basado la seguridad de nuestro sistema, ya podemos contar como funciona</p>
+
+            <p>En casos de emergencia o desastres naturales poder comunicarnos puede ser de vital importancia. Es por esto que nuestra aplicación Android nos permite establecer una comunicación en forma de chat con personas que se encuentren dentro del rango de acción de Wi-Fi Direct.</p>
+
+            <p>Además, si activamos el botón de envío periódico de mensajes de emergencia, la aplicación enviará un mensaje de emergencia automaticamente a las personas que se encuentren dentro del rango de acción de Wi-Fi Direct</p>
+
+            <p>Junto con cada mensaje, tanto de automático como manual, es enviada la información de geolocalización y pulsando sobre el mensaje podrá observarse la posición del emisor del mensaje en un mapa</p>
+
+            <p>Todo esto, siguiendo diferentes políticas de ahorro de energía y aplicando algoritmos seguros como los ya comentados</p>
+
+        </div>
+    </div>
+
+    <div id="app2" class="step slide" data-x="5400" data-y="-2900" data-z="-8000" data-scale="1">
+        <h1> Aplicación Wi-Fi Direct Locator </h1>
+        <img id = "loc1" src="img/loc1.png"  width="230" height="370"  />
+        <img id = "loc2" src="img/loc2.png"  width="230" height="370"  />
+        <img id = "loc3" src="img/loc3.png"  width="230" height="370"  />
+
+
+    </div>
+
+
+    <div id="fin" class="step" data-x="-8700" data-y="-450" data-rotate="470" data-scale="1">
+        <p class="animated hinge" id="gracias" ><b class="positioning">Gracias por su atención</b></p>
+        <p id="preguntas" ><b class="positioning">Preguntas</b></p>
+    </div>
+
+
+    <div id="fin1" class="step" data-x="-9000" data-y="-100" data-z="-300" data-rotate="470" data-scale="1">
+        <p><b class="rotating">José Iván Santos González</b><br/></p>
+        <p id="algorit">Comunicaciones seguras para la protección de las personas en situaciones de emergencia</p>
+    </div>
+
+</div>
+
+<!--
+    
+    Hint is not related to impress.js in any way.
+    
+    But it can show you how to use impress.js features in creative way.
+    
+    When the presentation step is shown (selected) its element gets the class of "active" and the body element
+    gets the class based on active step id `impress-on-ID` (where ID is the step's id)... It may not be
+    so clear because of all these "ids" in previous sentence, so for example when the first step (the one with
+    the id of `bored`) is active, body element gets a class of `impress-on-bored`.
+    
+    This class is used by this hint below. Check CSS file to see how it's shown with delayed CSS animation when
+    the first step of presentation is visible for a couple of seconds.
+    
+    ...
+    
+    And when it comes to this piece of JavaScript below ... kids, don't do this at home ;)
+    It's just a quick and dirty workaround to get different hint text for touch devices.
+    In a real world it should be at least placed in separate JS file ... and the touch content should be
+    probably just hidden somewhere in HTML - not hard-coded in the script.
+    
+    Just sayin' ;)
+    
+-->
+
+<!--
+    
+    Last, but not least.
+    
+    To make all described above really work, you need to include impress.js in the page.
+    I strongly encourage to minify it first.
+    
+    In here I just include full source of the script to make it more readable.
+    
+    You also need to call a `impress().init()` function to initialize impress.js presentation.
+    And you should do it in the end of your document. Not only because it's a good practice, but also
+    because it should be done when the whole document is ready.
+    Of course you can wrap it in any kind of "DOM ready" event, but I was too lazy to do so ;)
+    
+-->
+<script type="text/javascript" src="js/impress.js"></script>
+<script src="js/impress-progress.js"></script>
+<script src="js/impressConsole.js"></script>
+<script>
+    impress().init();
+    //impressConsole().init();
+    //impressConsole().open(); // If you want them to open automatically
+</script>
+
+<!--
+    
+    The `impress()` function also gives you access to the API that controls the presentation.
+    
+    Just store the result of the call:
+    
+        var api = impress();
+    
+    and you will get three functions you can call:
+    
+        `api.init()` - initializes the presentation,
+        `api.next()` - moves to next step of the presentation,
+        `api.prev()` - moves to previous step of the presentation,
+        `api.goto( idx | id | element, [duration] )` - moves the presentation to the step given by its index number
+                id or the DOM element; second parameter can be used to define duration of the transition in ms,
+                but it's optional - if not provided default transition duration for the presentation will be used.
+    
+    You can also simply call `impress()` again to get the API, so `impress().next()` is also allowed.
+    Don't worry, it wont initialize the presentation again.
+    
+    For some example uses of this API check the last part of the source of impress.js where the API
+    is used in event handlers.
+    
+-->
+
+</body>
+</html>
+
+<!--
+    
+    Now you know more or less everything you need to build your first impress.js presentation, but before
+    you start...
+    
+    Oh, you've already cloned the code from GitHub?
+    
+    You have it open in text editor?
+    
+    Stop right there!
+    
+    That's not how you create awesome presentations. This is only a code. Implementation of the idea that
+    first needs to grow in your mind.
+    
+    So if you want to build great presentation take a pencil and piece of paper. And turn off the computer.
+    
+    Sketch, draw and write. Brainstorm your ideas on a paper. Try to build a mind-map of what you'd like
+    to present. It will get you closer and closer to the layout you'll build later with impress.js.
+    
+    Get back to the code only when you have your presentation ready on a paper. It doesn't make sense to do
+    it earlier, because you'll only waste your time fighting with positioning of useless points.
+    
+    If you think I'm crazy, please put your hands on a book called "Presentation Zen". It's all about 
+    creating awesome and engaging presentations.
+    
+    Think about it. 'Cause impress.js may not help you, if you have nothing interesting to say.
+    
+-->
+
+<!--
+    
+    Are you still reading this?
+    
+    For real?
+    
+    I'm impressed! Feel free to let me know that you got that far (I'm @bartaz on Twitter), 'cause I'd like
+    to congratulate you personally :)
+    
+    But you don't have to do it now. Take my advice and take some time off. Make yourself a cup of coffee, tea,
+    or anything you like to drink. And raise a glass for me ;)
+    
+    Cheers!
+    
+-->
+
